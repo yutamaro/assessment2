@@ -13,13 +13,28 @@ assessmentButton.onclick = () => {
 //診断結果表示エリアの作成
 resultDivision.innerText = '';//中身を空にする
 
-  const header = document.createElement('h3');//h3タグを作る
-  header.innerText = '診断結果'; //h3タグの中身のテキストは診断結果
-  resultDivision.appendChild(header); //divの子要素として追加
-  const paragraph = document.createElement('p');//pタグを作る
-  const result = assessment(userName);//pタグの中身
+  
+  // headerDivision の作成
+  const headerDivision = document.createElement('div');
+  headerDivision.setAttribute('class', 'card-header text-bg-primary');
+  headerDivision.innerText = '診断結果';
+
+  // bodyDivision の作成
+  const bodyDivision = document.createElement('div');
+  bodyDivision.setAttribute('class', 'card-body');
+
+  const paragraph = document.createElement('p');
+  paragraph.setAttribute('class', 'card-text');
+  const result = assessment(userName);
   paragraph.innerText = result;
-  resultDivision.appendChild(paragraph);
+  bodyDivision.appendChild(paragraph);
+
+  // resultDivision に Bootstrap のスタイルを適用する
+  resultDivision.setAttribute('class', 'card');
+
+  // headerDivision と bodyDivision を resultDivision に差し込む
+  resultDivision.appendChild(headerDivision);
+  resultDivision.appendChild(bodyDivision);
   
   //ツイートエリアの作成
   tweetDivision.innerText = '';//ツイートエリアの中身を空にする
